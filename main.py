@@ -65,7 +65,7 @@ def clean_text(text):
 
 def find_csv_file(directory):
     for file_name in os.listdir(directory):
-        if file_name.endswith('.csv'):
+        if file_name.endswith('.csv') and 'processed_' not in file_name:
             return os.path.join(directory, file_name)
     return None
 
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     csv_file_path = find_csv_file(current_directory)
 
     if csv_file_path is None:
-        print("No CSV files found in the current directory.")
+        print("No unprocessed CSV files found in the current directory.")
     else:
         print(f"Processing file: {csv_file_path}")
         processed_df = process_dataset(csv_file_path)
